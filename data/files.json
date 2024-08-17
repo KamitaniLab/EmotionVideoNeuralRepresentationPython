@@ -1,0 +1,99 @@
+{
+    "demo_fmri": {
+        "save_in": "./fmri/paper2020/",
+        "files": [
+            {
+                "name":   "fmri_Subject1.h5",
+                "url":    "https://figshare.com/ndownloader/files/48467059",
+                "md5sum": "cec485616532d5de548c9341b06ec270"
+            }
+        ]
+    },
+    "demo_pycortex": {
+        "save_in": "./",
+        "files": [
+            {
+                "name":   "pycortex_Subject1.zip",
+                "url":    "https://ndownloader.figshare.com/files/48630547",
+                "md5sum": "4359d794b583d3dc5576b96764a1f3fc",
+                "postproc": [{"name": "unzip", "destination": "./"}]
+            }
+        ]
+    },
+    "features": {
+        "save_in": "./",
+        "files": [
+            {
+                "name":   "features.zip",
+                "url":    "https://ndownloader.figshare.com/files/48630544",
+                "md5sum": "63f9721cf0a42173fec9c54e931cbf49",
+                "postproc": [{"name": "unzip", "destination": "./"}]
+            }
+        ]
+    },
+    "fmri": {
+        "save_in": "./fmri/paper2020/",
+        "files": [
+            {
+                "name":   "fmri_Subject1.h5",
+                "url":    "https://figshare.com/ndownloader/files/48467059",
+                "md5sum": "cec485616532d5de548c9341b06ec270"
+            },
+            {
+                "name":   "fmri_Subject2.h5",
+                "url":    "https://figshare.com/ndownloader/files/48468622",
+                "md5sum": "6b4baa73fbe24eea1cbb7bb6e4cb6d5a"
+            },
+            {
+                "name":   "fmri_Subject3.h5",
+                "url":    "https://figshare.com/ndownloader/files/48469468",
+                "md5sum": "c1f92231f0c76e26f06b7f52f2cf9f4d"
+            },
+            {
+                "name":   "fmri_Subject4.h5",
+                "url":    "https://figshare.com/ndownloader/files/48471127",
+                "md5sum": "3c2cb332dec0797f1c82b864cf6aa1a9"
+            },
+            {
+                "name":   "fmri_Subject5.h5",
+                "url":    "https://figshare.com/ndownloader/files/48472147",
+                "md5sum": "defb2e73c2302648d8065aeae7a0c0bf"
+            }
+        ]
+    },
+    "pycortex": {
+        "save_in": "./",
+        "files": [
+            {
+                "name":   "pycortex_Subject1.zip",
+                "url":    "https://ndownloader.figshare.com/files/48630547",
+                "md5sum": "4359d794b583d3dc5576b96764a1f3fc",
+                "postproc": [{"name": "unzip", "destination": "./"}]
+            },
+            {
+                "name":   "pycortex_Subject2.zip",
+                "url":    "https://ndownloader.figshare.com/files/48630601",
+                "md5sum": "051d2d0d42f86a2d4c6cfb963f8872e5",
+                "postproc": [{"name": "unzip", "destination": "./"}]
+            },
+            {
+                "name":   "pycortex_Subject3.zip",
+                "url":    "https://ndownloader.figshare.com/files/48630598",
+                "md5sum": "3169cc8e06727f5e85065d263b90fc99",
+                "postproc": [{"name": "unzip", "destination": "./"}]
+            },
+            {
+                "name":   "pycortex_Subject4.zip",
+                "url":    "https://ndownloader.figshare.com/files/48630595",
+                "md5sum": "e189581d0fc371ec513884865fe7f21a",
+                "postproc": [{"name": "unzip", "destination": "./"}]
+            },
+            {
+                "name":   "pycortex_Subject5.zip",
+                "url":    "https://ndownloader.figshare.com/files/48630589",
+                "md5sum": "851653c4819b87354b3963857af830da",
+                "postproc": [{"name": "unzip", "destination": "./"}]
+            }
+        ]
+    }
+}
