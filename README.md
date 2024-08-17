@@ -8,12 +8,7 @@ We investigated the neural representation of visually evoked emotions using fMRI
 
 
 ## Dataset
-
-- Preprocessed fMRI data, DNN features extracted from sound clips: [figshare](https://figshare.com/articles/dataset/23633751)
-- Trained transformer models: [figshare](https://figshare.com/articles/dataset/23633751)
-- Stimulus sound clips: Refer to [data/README.md](data/README.md).
-
-- The preprocessed fMRI data for five subjects and ratings/features (category, dimension, visual object, and semantic) are available at [figshare](https://doi.org/10.6084/m9.figshare.11988351).
+- The preprocessed fMRI data for five subjects and ratings/features (category, dimension, visual object, and semantic) are available at [figshare](https://figshare.com/articles/dataset/The_neural_representation_of_visually_evoked_emotion_is_high-dimensional_categorical_anddistributed_across_transmodal_brain_regions_Python_version/26633035?file=48466108).
 - The raw fMRI data (bids format) is available at [OpenNeuro](https://openneuro.org/datasets/ds002425).
 
 ## Video stimuli
@@ -22,8 +17,15 @@ We investigated the neural representation of visually evoked emotions using fMRI
 - You can request the videos with emotion ratings from the following URL (https://goo.gl/forms/XErJw9sBeyuOyp5Q2).
 
 
-## Setup
+## Setup and Usage
 
+下記のチュートリアルで setup と計算手続きについて説明しています．
+
+[src/Tutorial.ipynb]()
+
+
+
+<!-- 
 ### Prepare environment
 
 1. Clone this `EmotionVideoNeuralRepresentationPython` repository to your local machine (GPU machine preferred).
@@ -31,11 +33,9 @@ We investigated the neural representation of visually evoked emotions using fMRI
 git clone git@github.com:KamitaniLab/EmotionVideoNeuralRepresentationPython.git
 ```
 
-2. Create conda environment using the `env.yaml`.
+2. Create conda environment using the `requirement.yaml`.
 ```
-conda env create --name kmtnlabemotion -f env.yaml 
-python -c "import torch; print(torch.cuda.is_available())"
-# True
+conda env create --name kmtnlabemotion -f requirement.yaml 
 ```
 
 3. Clone the following repositoris under `EmotionVideoNeuralRepresentationPython` directory. 
@@ -51,8 +51,10 @@ See [data/README.md](data/README.md).
 
 ## Usage
 
-### Decoding analysis
+### Decoding analysis -->
 
+
+<!-- 
 We provide scripts that reproduce main results in the original paper.
 Please execute the sh files in the following order.
 
@@ -89,6 +91,5 @@ Visualize the reconstruction quality with the following notebooks. These noteboo
 ```
 reconstruction/makefigures_recon_eval.ipynb
 reconstruction/makefigures_recon_eval_attention.ipynb
-```
+``` -->
 
-### Encoding analysis
