@@ -46,7 +46,7 @@ decoded_feature:
   name: ${decoder.name}
   path: ./data/decoded_features/${decoded_feature.name}/${decoded_feature.features.name}
   parameters:
-    average_sample: false
+    average_sample: true
 
   decoder: ${decoder}
 

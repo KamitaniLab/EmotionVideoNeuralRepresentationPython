@@ -16,7 +16,7 @@ decoder:
     subjects:
       - name: Subject1
         paths:
-          - ./data/fmri/paper2020/fmri_Subject1.h5
+          - ./data/fmri/paper2020/fmri_Subject1_for_tutorial.h5
     rois: ${roi_set.rois}
     label_key: stimulus_name
 
@@ -31,7 +31,7 @@ decoded_feature:
   name: ${decoder.name}
   path: ./data/decoded_features/${decoded_feature.name}/${decoded_feature.features.name}
   parameters:
-    average_sample: false
+    average_sample: true
 
   decoder: ${decoder}
 

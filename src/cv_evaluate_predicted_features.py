@@ -8,11 +8,6 @@ import os
 import re
 import glob
 
-import sys
-sys.path.insert(0, "./bdpy/")
-import bdpy
-print(bdpy.__file__)
-
 from bdpy.dataform import Features, DecodedFeatures, SQLite3KeyValueStore
 from bdpy.evals.metrics import profile_correlation, pattern_correlation, pairwise_identification
 from bdpy.pipeline.config import init_hydra_cfg
@@ -96,11 +91,13 @@ def cv_evaluate_predicted_features(
 
     if os.path.exists(output_file_fold):
         print('Loading {}'.format(output_file_fold))
-        results_db = ResultsStore(output_file_fold, timeout=240)
+        results_db = ResultsStore(output_file_fold)
+#        results_db = ResultsStore(output_file_fold, timeout=240)
     else:
         print('Creating new evaluation result store')
         keys = ["layer", "subject", "roi", "fold", "metric"]
-        results_db = ResultsStore(output_file_fold, timeout=240, keys=keys)
+        results_db = ResultsStore(output_file_fold, keys=keys)
+#        results_db = ResultsStore(output_file_fold, timeout=240, keys=keys)
 
     true_labels = features_test.labels
 

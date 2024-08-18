@@ -3,9 +3,9 @@
         "save_in": "./fmri/paper2020/",
         "files": [
             {
-                "name":   "fmri_Subject1.h5",
-                "url":    "https://figshare.com/ndownloader/files/48467059",
-                "md5sum": "cec485616532d5de548c9341b06ec270"
+                "name":   "fmri_Subject1_for_tutorial.h5",
+                "url":    "https://figshare.com/ndownloader/files/48638383",
+                "md5sum": "160ee2b4f4c8b61c1ef6acb1c63f28f4"
             }
         ]
     },

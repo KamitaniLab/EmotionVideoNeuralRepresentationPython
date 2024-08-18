@@ -14,7 +14,7 @@ encoder:
     subjects:
       - name: Subject1
         paths:
-          - ./data/fmri/paper2020/fmri_Subject1.h5
+          - ./data/fmri/paper2020/fmri_Subject1_for_tutorial.h5
     rois:
       - {name: Cortex,  select: Cortex = 1}
     label_key: stimulus_name
@@ -31,7 +31,7 @@ encoded_fmri:
   name: ${encoder.name}
   path: ./data/encoded_fmri/${encoded_fmri.name}/${encoded_fmri.features.name}
   parameters:
-    average_sample: false
+    average_sample: true
 
   encoder: ${encoder}
   fmri: ${encoder.fmri}
