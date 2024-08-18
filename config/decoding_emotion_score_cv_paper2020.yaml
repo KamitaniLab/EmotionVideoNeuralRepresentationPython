@@ -1,7 +1,6 @@
 # CV feature decoding
 
 defaults:
-#  - roi_set: wholebrain_demo
   - roi_set: wholebrain
 
 decoder:
@@ -47,7 +46,7 @@ decoded_feature:
   name: ${decoder.name}
   path: ./data/decoded_features/${decoded_feature.name}/${decoded_feature.features.name}
   parameters:
-    average_sample: true
+    average_sample: false
 
   decoder: ${decoder}
 

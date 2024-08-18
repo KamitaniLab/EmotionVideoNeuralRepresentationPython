@@ -13,11 +13,7 @@ import os
 import hdf5storage
 import numpy as np
 
-import sys
-sys.path.insert(0, "./bdpy/")
 import bdpy
-print(bdpy.__file__)
-
 from bdpy.pipeline.config import init_hydra_cfg
 from bdpy.dataform import SQLite3KeyValueStore
 from bdpy.evals.metrics import profile_correlation, pattern_correlation, pairwise_identification
@@ -65,14 +61,9 @@ def cv_evaluate_predicted_fmri(
     print('')
 
     # Metrics ################################################################
-    metrics = ['profile_correlation',
-               # 'pattern_correlation', 'identification_accuracy', 'identification_accuracy_predictedbase'
-               ]
+    metrics = ['profile_correlation']
     pooled_operation = {
         "profile_correlation": "mean",
-        # "pattern_correlation": "concat",
-        # "identification_accuracy": "concat",
-        # "identification_accuracy_predictedbase": "concat",
     }
 
     # Evaluating encoding performances #######################################
@@ -113,8 +104,9 @@ def cv_evaluate_predicted_fmri(
             for train_roi in _training_rois:
                 print("Training ROI:", train_roi)
                 # Training ROI's observed brain activity
-                observed_activity, train_roi_selector = bdata.select(training_rois[train_roi], return_index=True)
+                observed_activity = bdata.get(training_rois[train_roi])
                 observed_labels = np.asarray(bdata.get_label(label_key))
+                _, train_roi_selector = bdata.select(training_rois[train_roi], return_index=True)
                 if average_sample:
                     unique_observed_labels = np.unique(observed_labels)
                     observed_activity_list = []
@@ -130,8 +122,6 @@ def cv_evaluate_predicted_fmri(
 
                     fmri_dir = os.path.join(encoded_fmri_dir, feature, subject,
                                             train_roi, fold, 'encoded_fmri')
-                    # model_dir = os.path.join(encoder_dir, feature, subject,
-                    #                          train_roi, fold, 'model')
 
                     # Training ROI's encoded brain activity
                     encoded_activity_list = []
@@ -149,10 +139,6 @@ def cv_evaluate_predicted_fmri(
                     encoded_labels = np.array(encoded_labels)
                     observed_selector = np.array(observed_selector)
 
-                    # # Train y mean/norm
-                    # train_y_mean = hdf5storage.loadmat(os.path.join(model_dir, 'y_mean.mat'))['y_mean']
-                    # train_y_std = hdf5storage.loadmat(os.path.join(model_dir, 'y_norm.mat'))['y_norm']
-
                     for eval_roi in _rois:
                         print("Evaluation ROI: {}".format(eval_roi))
 
@@ -164,14 +150,11 @@ def cv_evaluate_predicted_fmri(
 
                         # Extract evalution target ROI's observed/encoded brain activity
                         roi_selector = target_roi_selector[train_roi_selector]
-                        # y_mean = train_y_mean[:, roi_selector]
-                        # y_std = train_y_std[:, roi_selector]
                         pred = encoded_activity[:, roi_selector]
                         obs = observed_activity[:, roi_selector]
 
                         # Extract fold target observed brain activity
                         obs = obs[observed_selector]
-                        # obs_labels = observed_labels[observed_selector]
 
                         # Evaluation ---------------------------
                         # Profile correlation
@@ -184,48 +167,6 @@ def cv_evaluate_predicted_fmri(
                                            fold=fold, metric='profile_correlation', value=r_prof)
                             print('Mean profile correlation:     {}'.format(np.nanmean(r_prof)))
 
-                        # # Pattern correlation
-                        # if not results_db.exists(layer=feature, subject=subject, roi=eval_roi,
-                        #                          fold=fold, metric='pattern_correlation'):
-                        #     results_db.set(layer=feature, subject=subject, roi=eval_roi,
-                        #                    fold=fold, metric='pattern_correlation',
-                        #                    value=np.array([]))
-                        #     r_patt = pattern_correlation(pred, obs, mean=y_mean, std=y_std)
-                        #     results_db.set(layer=feature, subject=subject, roi=eval_roi,
-                        #                    fold=fold, metric='pattern_correlation',
-                        #                    value=r_patt)
-                        #     print('Mean pattern correlation:     {}'.format(np.nanmean(r_patt)))
-
-                        # # Pair-wise identification accuracy (observed to predicted)
-                        # if not results_db.exists(layer=feature, subject=subject, roi=eval_roi,
-                        #                          fold=fold, metric='identification_accuracy'):
-                        #     results_db.set(layer=feature, subject=subject, roi=eval_roi,
-                        #                    fold=fold, metric='identification_accuracy',
-                        #                    value=np.array([]))
-                        #     if average_sample:
-                        #         ident = pairwise_identification(obs, pred)
-                        #     else:
-                        #         ident = pairwise_identification(obs, pred, single_trial=True,
-                        #                                         pred_labels=obs_labels, true_labels=encoded_labels)
-                        #     results_db.set(layer=feature, subject=subject, roi=eval_roi,
-                        #                    fold=fold, metric='identification_accuracy', value=ident)
-                        #     print('Mean identification accuracy: {}'.format(np.nanmean(ident)))
-
-                        # # Pair-wise identification accuracy (predicted to observed)
-                        # if not results_db.exists(layer=feature, subject=subject, roi=eval_roi,
-                        #                          fold=fold, metric='identification_accuracy_predictedbase'):
-                        #     results_db.set(layer=feature, subject=subject, roi=eval_roi,
-                        #                    fold=fold, metric='identification_accuracy_predictedbase',
-                        #                    value=np.array([]))
-                        #     if average_sample:
-                        #         ident = pairwise_identification(pred, obs)
-                        #     else:
-                        #         ident = pairwise_identification(pred, obs, single_trial=True,
-                        #                                         pred_labels=encoded_labels, true_labels=obs_labels)
-                        #     results_db.set(layer=feature, subject=subject, roi=eval_roi,
-                        #                    fold=fold, metric='identification_accuracy_predictedbase',
-                        #                    value=ident)
-                        #     print('Mean identification accuracy (predicted base): {}'.format(np.nanmean(ident)))
 
     # Pooled accuracy
     if os.path.exists(output_file_pooled):

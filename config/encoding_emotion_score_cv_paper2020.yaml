@@ -42,7 +42,7 @@ encoded_fmri:
   name: ${encoder.name}
   path: ./data/encoded_fmri/${encoded_fmri.name}/${encoded_fmri.features.name}
   parameters:
-    average_sample: true
+    average_sample: false
 
   encoder: ${encoder}
   fmri: ${encoder.fmri}

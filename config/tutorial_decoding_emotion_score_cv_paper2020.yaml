@@ -2,7 +2,6 @@
 
 defaults:
   - roi_set: wholebrain_demo
-#  - roi_set: wholebrain
 
 decoder:
   name: decoding_emotion_score_dimension_cv_paper2020_voxel${decoder.parameters.select_voxel_num}_alpha${decoder.parameters.alpha}
@@ -18,18 +17,6 @@ decoder:
       - name: Subject1
         paths:
           - ./data/fmri/paper2020/fmri_Subject1.h5
-#      - name: Subject2
-#        paths:
-#          - ./data/fmri/paper2020/fmri_Subject2.h5
-#      - name: Subject3
-#        paths:
-#          - ./data/fmri/paper2020/fmri_Subject3.h5
-#      - name: Subject4
-#        paths:
-#          - ./data/fmri/paper2020/fmri_Subject4.h5
-#      - name: Subject5
-#        paths:
-#          - ./data/fmri/paper2020/fmri_Subject5.h5
     rois: ${roi_set.rois}
     label_key: stimulus_name
 
@@ -39,15 +26,12 @@ decoder:
       - ./data/features/${decoder.features.name}
     layers:
       - category
-      # - dimension
-      # - semantic
-      # - vision
 
 decoded_feature:
   name: ${decoder.name}
   path: ./data/decoded_features/${decoded_feature.name}/${decoded_feature.features.name}
   parameters:
-    average_sample: true
+    average_sample: false
 
   decoder: ${decoder}
 
@@ -72,31 +56,6 @@ cv:
       train: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61],
       test:  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     }
-    # - {
-    #   name: fold2,
-    #   train: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61],
-    #   test:  [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-    # }
-    # - {
-    #   name: fold3,
-    #   train: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61],
-    #   test:  [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
-    # }
-    # - {
-    #   name: fold4,
-    #   train: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61],
-    #   test:  [31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
-    # }
-    # - {
-    #   name: fold5,
-    #   train: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61],
-    #   test:  [41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
-    # }
-    # - {
-    #   name: fold6,
-    #   train: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 61],
-    #   test:  [51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61]
-    # }
 
   # In each CV fold, the training samples are removed if they have overlapping 
   # values of `cv exclusive key` with the test samples so that the training and
