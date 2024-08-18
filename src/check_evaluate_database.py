@@ -13,11 +13,6 @@ import os
 import hdf5storage
 import numpy as np
 
-import sys
-sys.path.insert(0, "./bdpy/")
-import bdpy
-print(bdpy.__file__)
-
 from bdpy.pipeline.config import init_hydra_cfg
 from bdpy.dataform import SQLite3KeyValueStore
 from bdpy.evals.metrics import profile_correlation, pattern_correlation, pairwise_identification
@@ -83,9 +78,13 @@ def check_evaluate_database(
             finish_fold = False
             break
     if finish_fold:
+        print("==========")
         print("All conditions are finished.")
+        print("==========")
     else:
+        print("==========")
         print("!! There are still some conditions that have not been calculated.")
+        print("==========")
     print("")
 
     # Check Fold Evaluation database #######################################
@@ -108,9 +107,13 @@ def check_evaluate_database(
             finish_fold = False
             break
     if finish_fold:
+        print("==========")
         print("All conditions are finished.")
+        print("==========")
     else:
+        print("==========")
         print("!! There are still some conditions that have not been calculated.")
+        print("==========")
     print()
 
     return output_file_pooled, output_file_fold

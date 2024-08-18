@@ -25,15 +25,16 @@ import shutil
 from tqdm import tqdm
 from bdpy.pipeline.config import init_hydra_cfg
 
+
 # Main #######################################################################
 
-def check_evaluate_database(
+def check_training_prediction(
     predicted_result_dir: str,
     target: str,
     analysis_type: str,
     analysis_name: str,
-    fmri: Dict[str, List[str]],
-    rois: Dict[str, str],
+    subjects: List[str],
+    rois: List[str],
     features: List[str],
     cv_folds: Optional[List[Dict[str, List]]],
 ):
@@ -47,9 +48,7 @@ def check_evaluate_database(
     print('Evaluation ROIs: {}'.format(rois))
     print('Layers:          {}'.format(features))
     print('Folds:           {}'.format(cv_labels))
-    print('')
     print('Predicted result dir: {}'.format(predicted_result_dir))
-    print('True features (Test): {}'.format(fmri))
     print('')
     print('')
 
@@ -58,7 +57,7 @@ def check_evaluate_database(
     if not os.path.exists(distcomp_db):
         print("Not found tmporal file:", distcomp_db)
         print("Please run it in the same current directory as when you ran train/predict.")
-        sys.exit()
+        return
     else:
         running_process_list = []
         with sqlite3.connect(distcomp_db) as conn:
@@ -67,7 +66,9 @@ def check_evaluate_database(
             for x in c.fetchall():
                 running_process_list.append(x[0])
         if len(running_process_list) == 0:
+            print("==========")
             print("No processes were terminated during execution.")
+            print("==========")
             print()
         else:
             print("The following conditions have not been finished. Please re-run training/prediction script.")
@@ -96,13 +97,15 @@ def check_evaluate_database(
                 search_dir = os.path.join(predicted_result_dir, feature, subject, roi, fold, 'encoded_fmri')
             pred_files = glob.glob(os.path.join(search_dir, '*.mat'))
             predicted_filenum_list[search_dir] = len(pred_files)
+        print("")
 
         # file数が一定であることを確認
         filenum_list = [fnum for fnum in predicted_filenum_list.values()]
         unique_filenum_list = np.unique(filenum_list)
         if len(unique_filenum_list) == 1 and unique_filenum_list[0] != 0:
+            print("==========")
             print("All predicted files exist.")
-            sys.exit()
+            print("==========")
         else:
             if False:
                 # The case with the most occurrences in terms of number of files is assumed to be the default file num,
@@ -147,8 +150,9 @@ def check_evaluate_database(
                     elif res == 'n':
                         break
             else:
+                print("==========")
                 print("All predicted files exist.")
-                sys.exit()
+                print("==========")
 
     return
 
@@ -187,7 +191,7 @@ if __name__ == "__main__":
     cv_folds = cfg.cv.get("folds", None)
     analysis_name = analysis_sciprt_name + "-" + cfg["_run_"]["config_name"]
 
-    check_evaluate_database(
+    check_training_prediction(
         predicted_result_dir,
         target,
         analysis_type,
