@@ -10,12 +10,10 @@ Also, if an evaluation calculation is terminated midway and blank columns remain
 from typing import Dict, List, Optional
 from itertools import product
 import os
-import hdf5storage
-import numpy as np
+import sys
 
 from bdpy.pipeline.config import init_hydra_cfg
 from bdpy.dataform import SQLite3KeyValueStore
-from bdpy.evals.metrics import profile_correlation, pattern_correlation, pairwise_identification
 
 
 # Main #######################################################################
@@ -52,11 +50,7 @@ def check_evaluate_database(
     print('')
 
     # Metrics ################################################################
-    if analysis_type == "decoding":
-        metrics = ['profile_correlation']
-    else:
-        metrics = ['profile_correlation', 'pattern_correlation', 'identification_accuracy',
-                   'identification_accuracy_predictedbase']
+    metrics = ['profile_correlation']
 
     # Check Fold Evaluation database #######################################
     print("Fold calculation")
@@ -68,11 +62,11 @@ def check_evaluate_database(
         results_db = ResultsStore(output_file_fold)
 
     finish_fold = True
-    for subject, feature, fold, eval_roi, metric in product(subjects, features, cv_labels, rois, metrics):
-        if results_db.exists(layer=feature, subject=subject, roi=eval_roi, fold=fold, metric=metric):
-            if len(results_db.get(layer=feature, subject=subject, roi=eval_roi, fold=fold, metric=metric)) == 0:
-                results_db.delete(layer=feature, subject=subject, roi=eval_roi, fold=fold, metric=metric)
-                print("Remove emtpy value: {} - {} - {} - {} - {}".format(subject, feature, fold, eval_roi, metric))
+    for subject, feature, fold, roi, metric in product(subjects, features, cv_labels, rois, metrics):
+        if results_db.exists(layer=feature, subject=subject, roi=roi, fold=fold, metric=metric):
+            if len(results_db.get(layer=feature, subject=subject, roi=roi, fold=fold, metric=metric)) == 0:
+                results_db.delete(layer=feature, subject=subject, roi=roi, fold=fold, metric=metric)
+                print("Remove emtpy value: {} - {} - {} - {} - {}".format(subject, feature, fold, roi, metric))
                 finish_fold = False
         else:
             finish_fold = False
