@@ -19,77 +19,14 @@ We investigated the neural representation of visually evoked emotions using fMRI
 
 ## Setup and Usage
 
-下記のチュートリアルで setup と計算手続きについて説明しています．
+The following tutorial explains how to set up the environment and perform calculations. 
+Please download this file or open it in Google Colab. 
+<!--このファイルをダウンロードするか，Google colabで開いてご利用ください．-->
 
-[src/Tutorial.ipynb]()
+[Tutorial.ipynb](Tutorial.ipynb)&emsp;[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/KamitaniLab/EmotionVideoNeuralRepresentationPython/blob/main/Tutorials.ipynb)
 
-
-
-<!-- 
-### Prepare environment
-
-1. Clone this `EmotionVideoNeuralRepresentationPython` repository to your local machine (GPU machine preferred).
-```
-git clone git@github.com:KamitaniLab/EmotionVideoNeuralRepresentationPython.git
-```
-
-2. Create conda environment using the `requirement.yaml`.
-```
-conda env create --name kmtnlabemotion -f requirement.yaml 
-```
-
-3. Clone the following repositoris under `EmotionVideoNeuralRepresentationPython` directory. 
-```
-git clone git@github.com:KamitaniLab/SpecVQGAN.git
-git clone git@github.com:KamitaniLab/SpecVQGAN.git # あとでハッシュタグを足して固定する
-
-```
-
-### Download datasets and models
-
-See [data/README.md](data/README.md).
-
-## Usage
-
-### Decoding analysis -->
+\* **The calculations performed in the Tutorial are greatly simplified.** Please note that to exactly reproduce the results in our paper, you may need to use large-scale computing resources.
+<!-- Tutorialで実行可能な計算は，大幅に簡略化されたものです．Paperの結果の厳密な再現には，大規模な計算資源の利用などが必要になりますのでご注意ください．-->
 
 
-<!-- 
-We provide scripts that reproduce main results in the original paper.
-Please execute the sh files in the following order.
-
-1. Train feature decoders to predict the VGGishish features. 
-```
-cd EmotionVideoNeuralRepresentationPython
-python feature-decoding
-```
-
-2. Using the decoders trained in step.1, perform feature predictions. (Perform the prediction for the attention task dataset at the same time.)
-```
-./2_test_batch.sh
-```
-
-3. Validate the prediction accuracy of predicted features.
-```
-./3_eval_batch.sh
-```
-Visualize the prediction accuracy with the following notebook. This notebook draws Fig.3D and Fig.3E of the original paper.
-```
-feature_decoding/makefigures_featdec_eval.ipynb
-```
-
-4. Reconstruct sound clips using predicted features.
-```
-./4_recon_batch.sh
-```
-
-5. Validate the quality of reconstructed sound.
-```
-./5_recon_eval_batch.sh 
-```
-Visualize the reconstruction quality with the following notebooks. These notebooks draws Fig.4C and Fig.8C of the original paper.
-```
-reconstruction/makefigures_recon_eval.ipynb
-reconstruction/makefigures_recon_eval_attention.ipynb
-``` -->
 
