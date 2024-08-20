@@ -23,7 +23,7 @@ The following tutorial explains how to set up the environment and perform calcul
 Please download this file or open it in Google Colab. 
 <!--このファイルをダウンロードするか，Google colabで開いてご利用ください．-->
 
-[Tutorial.ipynb](Tutorial.ipynb)&emsp;[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/KamitaniLab/EmotionVideoNeuralRepresentationPython/blob/main/Tutorials.ipynb)
+[Tutorials.ipynb](Tutorials.ipynb)&emsp;[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/KamitaniLab/EmotionVideoNeuralRepresentationPython/blob/main/Tutorials.ipynb)
 
 \* **The calculations performed in the Tutorial are greatly simplified.** Please note that to exactly reproduce the results in our paper, you may need to use large-scale computing resources.
 <!-- Tutorialで実行可能な計算は，大幅に簡略化されたものです．Paperの結果の厳密な再現には，大規模な計算資源の利用などが必要になりますのでご注意ください．-->
