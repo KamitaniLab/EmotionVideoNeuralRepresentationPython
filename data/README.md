@@ -1,8 +1,8 @@
-# Sound Reconstruction Dataset
+# Emotional movie dataset
 
 ## Downloading dataset
 
-First, please install [bdpy](https://github.com/KamitaniLab/bdpy) via pip (version >= 0.21).
+First, please install [bdpy](https://github.com/KamitaniLab/bdpy) via pip.
 
 ```
 $ pip install bdpy
