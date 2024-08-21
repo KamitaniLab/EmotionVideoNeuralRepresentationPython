@@ -25,7 +25,11 @@ Please download this file or open it in Google Colab.
 
 [Tutorials.ipynb](Tutorials.ipynb)&emsp;[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/KamitaniLab/EmotionVideoNeuralRepresentationPython/blob/main/Tutorials.ipynb)
 
-\* **The calculations performed in the Tutorial are greatly simplified.** Please note that to exactly reproduce the results in our paper, you may need to use large-scale computing resources.
+\* **The calculations performed in the Tutorial are greatly simplified.** 
+
+Please note that:
+- Running it with the original settings presented in this tutorial does not cover the complete analysis of our paper; nested cross-validation for hyperparameter tuning is omitted from reproduction code for now.
+- Even if it hyperparameter tuning is omitted, to perform analysis following the original setting, you may need to use large-scale computing resources.
 <!-- Tutorialで実行可能な計算は，大幅に簡略化されたものです．Paperの結果の厳密な再現には，大規模な計算資源の利用などが必要になりますのでご注意ください．-->
 
 
