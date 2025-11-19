@@ -45,3 +45,60 @@ data
     └── Subject5
 ```
 
+### Emotion category and dimension properties
+
+Under `data/features/amt/mean_score_concat/category` and `data/features/amt/mean_score_concat/dimension`, the files `0001.mat`, `0002.mat`, ... contain the category/dimension scores for each movie clip, where **each file** (e.g., `0001.mat`) corresponds to **one movie clip**.
+
+In `category/*.mat`, the columns correspond to the following emotion categories, in this order:
+
+- admiration
+- adoration
+- aesthetic_appreciation
+- amusement
+- anger
+- anxiety
+- awe
+- awkwardness
+- boredom
+- calmness
+- confusion
+- contempt
+- craving
+- disappointment
+- disgust
+- empathic_pain
+- entrancement
+- envy
+- excitement
+- fear
+- guilt
+- horror
+- interest
+- joy
+- nostalgia
+- pride
+- relief
+- romance
+- sadness
+- satisfaction
+- sexual_desire
+- surprise
+- sympathy
+- triumph
+
+In `dimension/*.mat`, the columns correspond to the following affective dimensions:
+
+- Approach
+- Arousal
+- Attention
+- Certainty
+- Commitment
+- Control
+- Dominance
+- Effort
+- Fairness
+- Identity
+- Obstruction
+- Safety
+- Upswing
+- Valence
